@@ -13,7 +13,18 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
 dependencies {
+	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
+	compile('javax.servlet:jstl:1.2')
+	
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -21,6 +32,24 @@ dependencies {
 	}
 }
 
+/**
+war {
+    baseName = "helloworld"
+    version = "${version}"
+    manifest {
+        attributes 'Title': 'Reqeust And Header Tester!!!!',
+                   'Version': '${version}',
+                   'Main-Class': 'com.ha.helloworld.HelloworldApplication'
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+*/
+
 test {
 	useJUnitPlatform()
 }
+
