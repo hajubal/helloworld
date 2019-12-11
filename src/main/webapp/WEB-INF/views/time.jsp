@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%=request.getAttribute("time") %>
+Date: <%=request.getAttribute("time") %><br>
+Env: <%=request.getAttribute("env") %>
 </body>
 </html>
