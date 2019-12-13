@@ -2,6 +2,8 @@ package com.ha.helloworld.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,9 +25,13 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 	
+	static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+	
 	@GetMapping
 	public ResponseEntity<List<Employee>> getAllEmployee() {
 		List<Employee> list = this.employeeService.getAllEmployees();
+		
+		logger.info("Result : {}" + list);
 		
 		ResponseEntity<List<Employee>> response = new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
 		

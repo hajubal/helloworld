@@ -23,11 +23,13 @@ configurations {
 dependencies {
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
 	compile('javax.servlet:jstl:1.2')
-	compile("com.h2database:h2:1.4.193")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.apache.commons:commons-lang3:3.9")
+	//compile "org.slf4j:slf4j-api:1.7.28"
+
+	//runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
+	runtimeOnly "com.h2database:h2:1.4.193"
 	
-	//runtimeOnly 'com.h2database:h2'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
