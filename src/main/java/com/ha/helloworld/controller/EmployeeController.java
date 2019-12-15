@@ -31,7 +31,7 @@ public class EmployeeController {
 	public ResponseEntity<List<Employee>> getAllEmployee() {
 		List<Employee> list = this.employeeService.getAllEmployees();
 		
-		logger.info("Result : {}" + list);
+		logger.info("Result : {}", list);
 		
 		ResponseEntity<List<Employee>> response = new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
 		
@@ -43,6 +43,17 @@ public class EmployeeController {
         Employee entity = employeeService.getEmployeeById(id);
  
         return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.OK);
+    }
+	
+	@GetMapping("/error")
+    public ResponseEntity<Employee> error() {
+		
+		String a = null;
+		
+		a.charAt(2);
+        
+        return ResponseEntity.ok().build();
+ 
     }
  
     @PostMapping
