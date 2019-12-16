@@ -27,8 +27,23 @@ public class Employee {
 	@Column(name="email", nullable=false, length=200)
 	private String email;
 	
+	public Employee() {}
 	
-	
+	public Employee(Long id, String firstName, String lastName, String email) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
+	public Employee(String firstName, String lastName, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
 	public Long getId() {
 		return id;
 	}

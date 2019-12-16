@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
@@ -14,6 +16,7 @@ import com.ha.helloworld.entity.Employee;
 import com.ha.helloworld.repository.EmployeeRespository;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace=Replace.NONE)
 public class EmployeeServiceTest {
 
 	@Autowired
@@ -30,7 +33,7 @@ public class EmployeeServiceTest {
 		
 		List<Employee> list = this.repository.findAll();
 		
-		assertThat(list.size()).isEqualTo(2);
+		assertThat(list.size()).isEqualTo(19);
 	}
 	
 	public Employee getEmployeeById(Long id) {
