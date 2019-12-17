@@ -62,9 +62,10 @@ public class EmployeeController {
         return new ResponseEntity<Employee>(updated, new HttpHeaders(), HttpStatus.OK);
     }
  
-    @DeleteMapping("/{id}")
-    public HttpStatus deleteEmployeeById(@PathVariable("id") Long id) {
+    @SuppressWarnings("rawtypes")
+	@DeleteMapping("/{id}")
+    public ResponseEntity deleteEmployeeById(@PathVariable("id") Long id) {
     	employeeService.deleteEmployeeById(id);
-        return HttpStatus.FORBIDDEN;
+        return ResponseEntity.ok().build();
     }
 }
