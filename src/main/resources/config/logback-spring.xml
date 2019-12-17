@@ -14,7 +14,7 @@
     <file>${logging.file.path}/logFile.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <!-- daily rollover -->
-      <fileNamePattern>logFile.%d{yyyy-MM-dd}.zip</fileNamePattern>
+      <fileNamePattern>${logging.file.path}/logFile.%d{yyyy-MM-dd}.zip</fileNamePattern>
 
       <!-- keep 30 days' worth of history capped at 3GB total size -->
       <maxHistory>30</maxHistory>
@@ -34,11 +34,11 @@
       <onMismatch>DENY</onMismatch>
     </filter>
     
-    <file>${logging.file.path}/ErrorLogFile.log</file>
+    <file>${logging.file.path}/errorLogFile.log</file>
     
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <!-- daily rollover -->
-      <fileNamePattern>ErrorLogFile.%d{yyyy-MM-dd}.zip</fileNamePattern>
+      <fileNamePattern>${logging.file.path}/errorLogFile.%d{yyyy-MM-dd}.zip</fileNamePattern>
 
       <!-- keep 30 days' worth of history capped at 3GB total size -->
       <maxHistory>30</maxHistory>
