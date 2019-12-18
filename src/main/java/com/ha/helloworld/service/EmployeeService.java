@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ha.helloworld.entity.Employee;
 import com.ha.helloworld.repository.EmployeeRespository;
 
-@Service
+@Service(value = "EmployeeService")
 public class EmployeeService {
 
 	@Autowired
