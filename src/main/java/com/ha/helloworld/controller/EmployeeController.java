@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ha.helloworld.entity.Employee;
+import com.ha.helloworld.exception.RecordNotFoundException;
 import com.ha.helloworld.service.EmployeeService;
 
 @Controller
@@ -41,6 +42,10 @@ public class EmployeeController {
 	@GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id) {
         Employee entity = employeeService.getEmployeeById(id);
+        logger.debug("", "");
+        if(entity == null) {
+        	throw new RecordNotFoundException("Invalid employee id: " + id);
+        }
  
         return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.OK);
     }
