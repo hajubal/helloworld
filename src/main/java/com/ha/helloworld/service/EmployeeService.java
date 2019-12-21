@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ha.helloworld.entity.Employee;
+import com.ha.helloworld.entity.EmployeeDto;
 import com.ha.helloworld.repository.EmployeeRespository;
 
 @Service(value = "EmployeeService")
@@ -34,7 +35,7 @@ public class EmployeeService {
 		return null;
 	}
 	
-	public Employee createOrUpdateEmployee(Employee entity) {
+	public Employee createOrUpdateEmployee(EmployeeDto entity) {
 		
 		Employee data = this.getEmployeeById(entity.getId());
 		
