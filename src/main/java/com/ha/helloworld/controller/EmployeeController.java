@@ -2,6 +2,8 @@ package com.ha.helloworld.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +44,9 @@ public class EmployeeController {
 	@GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id) {
         Employee entity = employeeService.getEmployeeById(id);
-        logger.debug("", "");
+        
+        logger.info("Result : {}", entity);
+        
         if(entity == null) {
         	throw new RecordNotFoundException("Invalid employee id: " + id);
         }
@@ -62,7 +66,7 @@ public class EmployeeController {
     }
  
     @PostMapping
-    public ResponseEntity<Employee> createOrUpdateEmployee(Employee employee) {
+    public ResponseEntity<Employee> createOrUpdateEmployee(@Valid Employee employee) {
         Employee updated = employeeService.createOrUpdateEmployee(employee);
         return new ResponseEntity<Employee>(updated, new HttpHeaders(), HttpStatus.OK);
     }
