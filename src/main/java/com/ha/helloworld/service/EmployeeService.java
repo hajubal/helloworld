@@ -37,21 +37,12 @@ public class EmployeeService {
 		return null;
 	}
 	
-	public List<Employee> srchEmployeeByName(String name) {
-		return this.repository.findAll(new Example<Employee>() {
-
-			@Override
-			public Employee getProbe() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public ExampleMatcher getMatcher() {
-				
-				return null;
-			}
-		});
+	public List<Employee> srchEmployeeByName(String firstName) {
+		return this.repository.findByFirstNameLike("%" + firstName + "%");
+	}
+	
+	public List<Employee> customSrchEmployeeByName(String firstName) {
+		return this.repository.selectDefineQuery(firstName);
 	}
 	
 	public Employee createOrUpdateEmployee(EmployeeDto entity) {

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ha.helloworld.entity.Employee;
@@ -78,4 +79,23 @@ public class EmployeeController {
     	employeeService.deleteEmployeeById(id);
         return ResponseEntity.ok().build();
     }
+    
+    @GetMapping("/find")
+    public ResponseEntity<List<Employee>> findEmployeeByName(EmployeeDto employee) {
+    	logger.debug("Param: {}" + employee);
+    	
+    	List<Employee> list = this.employeeService.srchEmployeeByName(employee.getFirstName());
+    	
+    	return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+    
+    @GetMapping("/findCustom")
+    public ResponseEntity<List<Employee>> findCustomEmployeeByName(EmployeeDto employee) {
+    	logger.debug("Param: {}" + employee);
+    	
+    	List<Employee> list = this.employeeService.customSrchEmployeeByName(employee.getFirstName());
+    	
+    	return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+    
 }
