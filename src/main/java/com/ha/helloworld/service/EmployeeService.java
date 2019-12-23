@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import com.ha.helloworld.entity.Employee;
@@ -33,6 +35,23 @@ public class EmployeeService {
 		if(option.isPresent()) return option.get();
 		
 		return null;
+	}
+	
+	public List<Employee> srchEmployeeByName(String name) {
+		return this.repository.findAll(new Example<Employee>() {
+
+			@Override
+			public Employee getProbe() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public ExampleMatcher getMatcher() {
+				
+				return null;
+			}
+		});
 	}
 	
 	public Employee createOrUpdateEmployee(EmployeeDto entity) {
