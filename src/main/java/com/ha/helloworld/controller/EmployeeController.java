@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ha.helloworld.entity.Employee;
 import com.ha.helloworld.entity.EmployeeDto;
 import com.ha.helloworld.exception.RecordNotFoundException;
+import com.ha.helloworld.repository.EmployeeRespository;
 import com.ha.helloworld.service.EmployeeService;
 
 @RestController
@@ -28,6 +29,9 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeService employeeService;
+	
+	@Autowired
+	EmployeeRespository employeeRespository;
 	
 	static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
@@ -78,4 +82,32 @@ public class EmployeeController {
     	employeeService.deleteEmployeeById(id);
         return ResponseEntity.ok().build();
     }
+    
+    @GetMapping("/find")
+    public ResponseEntity<List<Employee>> findEmployeeByName(EmployeeDto employee) {
+    	logger.debug("Param: {}" + employee);
+    	
+    	List<Employee> list = this.employeeService.srchEmployeeByName(employee.getFirstName());
+    	
+    	return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+    
+    @GetMapping("/findCustom")
+    public ResponseEntity<List<Employee>> findCustomEmployeeByName(EmployeeDto employee) {
+    	logger.debug("Param: {}" + employee);
+    	
+    	List<Employee> list = this.employeeService.customSrchEmployeeByName(employee.getFirstName());
+    	
+    	return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+    
+    @GetMapping("/findCustom2")
+    public ResponseEntity<List<Employee>> findCustomEmployeeByName2(EmployeeDto employee) {
+    	logger.debug("Param: {}" + employee);
+    	
+    	List<Employee> list = this.employeeRespository.findByFirstNameLikeCustom2(employee.getFirstName());
+    	
+    	return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+    
 }
