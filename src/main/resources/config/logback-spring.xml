@@ -27,6 +27,23 @@
     </encoder>
   </appender>
   
+  <appender name="CONTROLLER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${logging.file.path}/logFile_controller.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>${logging.file.path}/logFile_controller.%d{yyyy-MM-dd}.zip</fileNamePattern>
+
+      <!-- keep 30 days' worth of history capped at 3GB total size -->
+      <maxHistory>30</maxHistory>
+      <totalSizeCap>3GB</totalSizeCap>
+
+    </rollingPolicy>
+
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
   <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <filter class="ch.qos.logback.classic.filter.LevelFilter">
       <level>ERROR</level>
@@ -38,7 +55,7 @@
     
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <!-- daily rollover -->
-      <fileNamePattern>${logging.file.path}/errorLogFile.%d{yyyy-MM-dd}.zip</fileNamePattern>
+      <fileNamePattern>${logging.file.path}/errorLogFile.%d{yyyy-MM-dd}.log</fileNamePattern>
 
       <!-- keep 30 days' worth of history capped at 3GB total size -->
       <maxHistory>30</maxHistory>
@@ -56,15 +73,13 @@
   
 
   <root level="info">
-    <!-- <appender-ref ref="STDOUT" /> -->
+    <appender-ref ref="STDOUT" />
     <appender-ref ref="FILE" />
     <appender-ref ref="ERROR_FILE" />
   </root>
 
   <logger name="com.ha.helloworld.controller" level="debug">
-  	<appender-ref ref="STDOUT" />
   	<appender-ref ref="FILE" />
-  	<appender-ref ref="ERROR_FILE" />
   </logger>
 
 </configuration>
