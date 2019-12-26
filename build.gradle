@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
 	id 'war'
+	id 'org.hidetake.ssh' version '2.10.1'
 }
 
 group = 'com.ha'
@@ -23,18 +24,16 @@ configurations {
 dependencies {
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
 	compile('javax.servlet:jstl:1.2')
-	compile("org.springframework.boot:spring-boot-starter-data-jpa")
-	compile("org.apache.commons:commons-lang3:3.9")
-	compile "org.springframework.boot:spring-boot-starter-thymeleaf"
-	compile "org.springframework.boot:spring-boot-starter-hateoas"
-	//compile "org.slf4j:slf4j-api:1.7.28"
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.apache.commons:commons-lang3:3.9')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-hateoas')
 
-	//runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
-	runtimeOnly "com.h2database:h2:1.4.193"
+	runtimeOnly('com.h2database:h2:1.4.193')
 	
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	developmentOnly('org.springframework.boot:spring-boot-devtools')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
@@ -42,8 +41,8 @@ dependencies {
 
 /**
 war {
-    baseName = "helloworld"
-    version = "${version}"
+    baseName = 'helloworld'
+    version = '${version}'
     manifest {
         attributes 'Title': 'Reqeust And Header Tester!!!!',
                    'Version': '${version}',
