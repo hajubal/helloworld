@@ -73,13 +73,12 @@
   
 
   <root level="info">
-    <!-- <appender-ref ref="STDOUT" /> -->
+    <appender-ref ref="STDOUT" />
     <appender-ref ref="FILE" />
     <appender-ref ref="ERROR_FILE" />
   </root>
 
   <logger name="com.ha.helloworld.controller" level="debug">
-  	<appender-ref ref="STDOUT" />
   	<appender-ref ref="FILE" />
   	<appender-ref ref="ERROR_FILE" />
   </logger>
