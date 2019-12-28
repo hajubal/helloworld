@@ -2,12 +2,12 @@ plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
-	id 'war'
+	//id 'war'
 	id 'org.hidetake.ssh' version '2.10.1'
 }
 
 group = 'com.ha'
-version = '0.0.1-SNAPSHOT'
+//version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -33,19 +33,26 @@ dependencies {
 	
 	developmentOnly('org.springframework.boot:spring-boot-devtools')
 	implementation('org.springframework.boot:spring-boot-starter-web')
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	//providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 }
 
+// 여러 task에서 사용할 수 있도록 build file 이름은 전역변수로 지정
+project.ext{
+    warBaseName = 'helloworld'
+    warVersion = '0.0.1-'+ new Date().format('yyyyMMdd-HHmmss')
+}
 
-jar {
-    baseName = 'helloworld'
-    version = '${version}'
+bootJar {
+	baseName = project.warBaseName
+    version = project.warVersion
+    exclude("build/**")
+    
     manifest {
-        attributes 'Title': 'Reqeust And Header Tester!!!!',
-                   'Version': '${version}',
+        attributes 'Title': 'Hello world.',
+                   'Version': project.warVersion,
                    'Main-Class': 'com.ha.helloworld.HelloworldApplication'
     }
     from {
