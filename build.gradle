@@ -39,8 +39,8 @@ dependencies {
 	}
 }
 
-/**
-war {
+
+jar {
     baseName = 'helloworld'
     version = '${version}'
     manifest {
@@ -54,7 +54,41 @@ war {
         }
     }
 }
-*/
+
+
+remotes {
+    publicServer {
+        host = project.properties["publicHost"]
+        port = project.properties["publicPort"].toInteger()
+        user = project.properties["publicUser"]
+        password = project.properties["publicPassword"]
+        knownHosts = allowAnyHosts //알 수 없는 호스트라도 접속 가능
+    }
+}
+
+task scp {
+	doLast {
+	    ssh.run {
+	        //remotes.publicServer으로 호스트 세션 시작
+	        session(remotes.publicServer) {
+	
+	            // war 파일명을 로컬변수에 지정
+	            //final warName = "C:/Users/hajubal/git/helloworld/README.md"
+	            final warName = "README.md"
+	            println "war 이름 : ${warName}"
+	
+	            println "public 서버 파일 전송 시작"
+	            /*
+	                from : 현재 폴더를 기준으로 from path 지정
+	                into : 도착서버의 디렉토리 path 지정
+	             */
+	            put from: file("${warName}"), into: project.properties["publicDir"]
+	            println "public 서버 파일 전송 완료"
+	            //execute 'sudo service tomcat restart'
+	        }
+	    }
+    }
+}
 
 test {
 	useJUnitPlatform()
