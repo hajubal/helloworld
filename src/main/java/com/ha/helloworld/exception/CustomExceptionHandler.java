@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * 에러 공통 핸들러
+ * 
+ * @author hajubal
+ *
+ */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {

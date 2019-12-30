@@ -9,6 +9,11 @@ import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
 
+/**
+ * 에러 response에 공통적으로 추가할 속성 정의
+ * @author hajubal
+ *
+ */
 @Component
 public class CustomErrorAttributes extends DefaultErrorAttributes {
 

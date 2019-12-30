@@ -10,6 +10,12 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+/**
+ * 테이블 엔티티 정의
+ * 
+ * @author hajubal
+ *
+ */
 @Entity
 @Table(name="TBL_EMPLOYEES")
 public class Employee {
