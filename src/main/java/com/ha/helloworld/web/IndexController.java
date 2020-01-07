@@ -3,7 +3,6 @@ package com.ha.helloworld.web;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ha.helloworld.service.EmployeeService;
@@ -19,7 +18,12 @@ public class IndexController {
 		return "index";
 	}
 	
-	@GetMapping("/main")
+	@RequestMapping("/home")
+	String home() {
+		return "home";
+	}
+	
+	@RequestMapping("/main")
 	String main() {
 		return "main";
 	}
