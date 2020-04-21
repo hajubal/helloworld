@@ -3,6 +3,8 @@ package com.ha.helloworld.exception;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +26,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 //public class CustomExceptionHandler {
-
+	Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
+	
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
 		List<String> details = new ArrayList<>();
 
 		details.add(ex.getLocalizedMessage());
-
+		
+		logger.error(ex.getMessage(), ex);
+		
 		ErrorResponse error = new ErrorResponse("Server Error", details);
 
 		return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);

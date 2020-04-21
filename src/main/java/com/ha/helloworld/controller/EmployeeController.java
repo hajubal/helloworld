@@ -91,7 +91,7 @@ public class EmployeeController {
     
     @GetMapping("/find")
     public ResponseEntity<List<Employee>> findEmployeeByName(EmployeeDto employee) {
-    	logger.debug("Param: {}" + employee);
+    	logger.debug("Param: {}", employee);
     	
     	List<Employee> list = this.employeeService.srchEmployeeByName(employee.getFirstName());
     	
@@ -100,7 +100,7 @@ public class EmployeeController {
     
     @GetMapping("/findCustom")
     public ResponseEntity<List<Employee>> findCustomEmployeeByName(EmployeeDto employee) {
-    	logger.debug("Param: {}" + employee);
+    	logger.debug("Param: {}", employee);
     	
     	List<Employee> list = this.employeeService.customSrchEmployeeByName(employee.getFirstName());
     	
