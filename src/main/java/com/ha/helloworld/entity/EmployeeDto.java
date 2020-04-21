@@ -31,9 +31,21 @@ public class EmployeeDto {
     @Email(message = "email should be a valid email")
 	private String email;
 	
+	private String password;
+	
+	
 
-	
-	
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 
 	public Long getId() {
 		return id;
